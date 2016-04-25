@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+    <form name="everything">
+        <table border="border" cellpadding="5">
+              <tr>
+                    <td>UserName:<br/>[1]<input type="TEXT" name="username" size="15"/></td>
+                    <td>Password:<br/>[2]:<input type="PASSWORD" name="password" size="15"/>  </td>
+                    <td rowspan="4">Input Events[3]<br/><textarea name="textarea" rows="20" cols="28"/></textarea> </td>
+                    <td rowspan="4" align="center" valign="center">
+                     [9]<input type="BUTTON" value="Clear" name="clearbutton"/><br/>
+                     [10]<input type="BUTTON" value="submit" name="submitbutton"/><br/>
+                     [11]<input type="RESET" value="Reset" name="resetbutton"/><br/>
+                    </td> 
+                </tr>
+                <tr>
+                    <td colspan="2">File:[4]<input type="FILE" name="file" size="15"/></td>
+                </tr>
+        <tr>
+                    <td>My Computer Peripherals:<br/>
+                            [5]<input type="CHECKBOX" name="extras" value="burner">DVD Writer<br/>
+                            [5]<input type="CHECKBOX" name="extras" value="printter">Printer<br/>
+                            [5]<input type="CHECKBOX" name="extras" value="card">cardReader<br/>    
+                        </td>
+                        <td>My Web Browser:</br>
+                             [6]<input type="RADIO" name="browser" value="ff">Firefox<br/>
+                             [6]<input type="RADIO" name="browser" value="ie">IE<br/>
+                             [6]<input type="RADIO" name="browser" value="other">Other
+                         </td>
+                     </tr>
+                     <tr>
+                        <td> My Hobbies:[7]<BR/>
+                                <select multiple="multiple" name="Hobbies" size="4">
+                                    <option value="programmeing">Hacking Javascript
+                                    <option value="surfing"> surfing the web
+                                    <option value="caffeine">Drinking coffe
+                                    <option value="annoying">annoying my friends
+                                </select>
+                            </td>
+                            <td align="center" valign="center">My Favorite Color:<br>[8]
+                                <select name="color">
+                                    <option value="red">red      <option value="green">green
+                                    <option value="Blue">Blue     <option value="white">white
+                                    <option value="violet">violet   <option value="peach">Peach
+                                </select>    
+                            </td>
+                     </tr>
+      </table>
+    </form>
+
+    <div align="center">
+           <table border="4" bgcolor="pink" cellspacing="1" cellpadding="4">
+                 <tr>
+                     <td align="center"><b>Form Elements</b></td>
+                     <td>[1]Text</td> <td>[2]Password</td>  <td>[3]textarea</td>
+                     <td>[4]FielU</td> <td>[5]Checkbox</td>
+                    </tr>
+                    <tr>
+                        <td>[6]Radio</td><td>[7]select(list)</td><td>select(menu)</td>
+                        <td>[9]BUTTON</td><td>[10]submit</td><td>[11]Reste</td>
+                    </tr>
+             </table>
+         </div>
+         <script type="text/Javascript">
+             function report(element,event){
+                if((element.type=="select-one") || (element.type=="select-multiple")){
+                         value="";
+                             for(var i=0;i<element.options.length;i++)
+                                   if(element.options[i].selected)
+                                           value+=element.options[i].value+"";
+                    }
+                    else if(element.type=="textarea") value="..."
+                    else value=element.value;
+                    var msg=event+":"+element.name+'('+value+')\n';
+                    var t=element.form.textarea;
+                    t.value=t.value+msg;
+            }
+     function addhandlers(f){
+             for(var i=0;i<f.elements.length;i++){
+                 var e=f.elements[i];
+           e.onclick=function(){report(this,'Click');}
+                     e.onchange=function(){report(this,'Change');}
+                     e.onfocus=function(){report(this,'Focus');}
+                     e.onblur=function(){report(this,'Blur');}
+                     e.onselect=function(){report(this,'Select');}
+             }
+             //Define some special-case event handlers for the three buttions.
+             f.clearbutton.onclick=function(){
+                  this.form.textarea.value='';report(this,'CLick');
+             }
+             f.submitbutton.onclick=function(){
+                 report(this,'Click');return false;
+             }
+             f.resetbutton.onclick=function(){
+                 this.form.reset();report(this,'Click');return false;
+             }
+         }
+    //Finally,activate our form by adding all possible event handlers
+       addhandlers(document.everything);
+         </script>     
+</body>
+</html>

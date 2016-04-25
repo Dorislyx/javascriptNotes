@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+	tr{
+		text-align: center;
+	}
+</style>
+<body>
+	<input type="button" value="新增" onclick="show()"></input>
+	<!-- table main str-->
+	<div>
+		<table border="1" cellspacing="0" width="90%" id="tableid">
+			<tbody>
+
+				<tr>
+					<th>编号</th>
+					<th>名称</th>
+					<th>代码</th>
+					<th>机构</th>
+					<th>类别</th>
+					<th>操作</th>
+				</tr>
+
+				<tr>
+	            <td>1</td>
+	            <td>民生宝</td>
+	            <td>100021</td>
+	            <td>ms</td>
+	            <td>基金</td>
+	            <td>
+	               <input type="button" value="修改" onclick="update_(this.parentNode.parentNode)"></input>
+	               <input type="button" value="删除" onclick="delete_(this.parentNode.parentNode)"></input>
+	            </td>
+	         </tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- form main endstr-->
+	<div align="center" id="did" style="visibility: hidden;">
+		<form action="">
+			<table>
+				<tr>
+					<td>标题：</td>
+					<td><input type="text" id="title"></input></td>
+					<td>摘要：</td>
+					<td><input type="text" id="digest"></input></td>
+				</tr>
+				<tr>
+					<td>作者：</td>
+					<td><input type="text" id="author"></input></td>
+					<td>类别：</td>
+					<td align="left">
+			        <select id="select">
+			          <option>证劵</option>
+			          <option>基金</option>
+			          <option>股票</option>
+			        </select>
+			      </td>
+				</tr>
+			</table>
+			<center>
+				<input type="button" value="保存"></input>
+				<input type="button" value="重置"></input>
+			</center>
+		</form>
+	</div>
+	<!-- form main end-->
+</body>
+</html>
+<script type="text/javascript">
+	//通过新增按钮来控制表格的显示与隐藏
+	 var optionFlag = "save";
+  	 var updateRowIndex = -1;
+  	 var checkFlag=false;//默认为不显示 
+  	 function show() {
+ 	   optionFlag = "save";
+ 	   var f = document.getElementById("did");//获得id为did的 div
+       if(!checkFlag) {
+          f.style.visibility="visible";
+       }else{
+          f.style.visibility="hidden";
+       }
+       checkFlag=!checkFlag;
+  	 }
+
+
+	//通过保存按钮将数据添加到表格中
+	function insertRow_$save(){
+		//通过id获得要添加数据的表格
+		var table = document.getElementById("tableid");
+
+		 //将所输入的内容赋给定义的变量
+		var titleName = document.getElementById("title").value;
+		var digestName = document.getElementById("digest").value;
+		var authorName = document.getElementById("author").value;
+
+		//获取下拉框内的内容
+		var selectIndex_ = document.getElementById("select");
+	    var option = selectIndex_.options[selectIndex_.selectedIndex];
+        var selectName = option.text;
+
+        //获取编号的内容
+        var numberid = table.rows.length;
+	}
+
+</script>
+
+
+
